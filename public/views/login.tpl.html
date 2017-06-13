@@ -9,13 +9,17 @@
                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus
                     ng-model="user.email">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required
-                    ng-model="user.password">
-
+                    ng-model="user.pass">
+                
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="button"
+                    ng-disabled="isLoggingIn"
                     ng-click="login()">
                     <span ng-if="isLoggingIn">Signing in...</span>
                     <span ng-if="!isLoggingIn">Sign in</span>
                 </button>
             </form><!-- /form -->
+            <div uib-alert  ng-class="'alert-warning'" ng-repeat="error in errors" close="closeAlert($index)">
+                {{error}}
+            </div>
         </div><!-- /card-container -->
     </div>

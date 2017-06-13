@@ -24,11 +24,13 @@ input {
 
 .doneClass {
 	text-decoration: line-through;
-	color: red;
+    font-style: italic;
+    color:  #888;
+	/*color: red;*/
 }
 
 .notDoneClass {
-	color: green;
+	/*color: green;*/
 }
 
 .todo-list > li {
@@ -45,7 +47,9 @@ input {
     background: #EDEDED;
 }
 
-
+.checkbox .pull-right{
+    margin-top:  -8px;
+}
 
 
 

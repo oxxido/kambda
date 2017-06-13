@@ -98,14 +98,16 @@ function loginCtrl($rootScope, $scope, $location, $http, loginService) {
         email: '',
         pass: '',
     };
-    $scope.errors = [];
+    $scope.errors = ['un error'];
     $scope.isLoggingIn = false;
 
     //methods
     $scope.login = login;
+    $scope.closeAlert = closeAlert;
 
     function login() {
         $scope.isLoggingIn = true;
+        console.log($scope.user);
         loginService.login($scope.user.email, $scope.user.pass)
         .then(function(response) {
             console.log(response);
@@ -117,5 +119,7 @@ function loginCtrl($rootScope, $scope, $location, $http, loginService) {
             }
         });
     }
-
+    function closeAlert(index) {
+        $scope.errors.splice(index, 1);
+    };
 }

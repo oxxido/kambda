@@ -134,7 +134,7 @@ angular.module('postgreDbApp.services', [])
 /**
  * Login - Factory Service
  */
-.factory('loginService', function($http, $q) {
+.factory('loginService', function($http, $q, $httpParamSerializer) {
 
     /*================================================================
     Login - $http post
@@ -142,8 +142,8 @@ angular.module('postgreDbApp.services', [])
     var login = function(user, pass) {
 
         return $http.post('/api/login/', {
-            user: user,
-            pass: pass
+            'user': user,
+            'pass': pass
         });
 
     }
@@ -151,5 +151,5 @@ angular.module('postgreDbApp.services', [])
     //Return Factory Object
     return {
         login: login
-    } 
+    }
 });

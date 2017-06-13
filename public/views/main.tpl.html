@@ -31,7 +31,6 @@
                 </ul>
 			</div>
 		</div>
-        <div uib-alert  ng-class="'alert-warning'" ng-if="true==false" close="closeAlert($index)">ALERTA!</div>
 		<!-- Form to create Todo -->
 		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
@@ -42,7 +41,7 @@
 					</div>
 
 					<!-- Form will be invalid unless the input box has content only then will the Button become active-->
-					<button type="submit" class="btn btn-primary btn-lg" ng-disabled="fmCreateTodo.$invalid" 
+					<button type="submit" class="btn btn-primary" ng-disabled="fmCreateTodo.$invalid" 
 							ng-click="createTodo()">Create</button>
 				</form> <!-- @END/ form -->
 
