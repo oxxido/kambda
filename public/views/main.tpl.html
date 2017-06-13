@@ -12,28 +12,30 @@
 
 		<!-- List of Todo's -->
 		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+			<div class="col-sm-8 col-sm-offset-2">
 
 				<!-- Loop through todos in $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos track by $index">
-					<button class="btn-xs" ng-click="deleteTodo(todo.id)">X</button>
-					
-					 	[{{$index}}]	
-	
-						<input type="checkbox" ng-model="todo.done">
-						<input type="text" name="ibTodo" ng-model= "todo.text" value="{{todo.text}}" 
-							ng-class="{'doneClass': todo.done, 'notDoneClass': !todo.done }"> 
-						<button class="btn btn-primary btn-xs" ng-click="editTodo(todo.id, todo.text, todo.done)">Update</button>
-				</div>
+                <ul id="sortable" class="list-unstyled ui-sortable todo-list">
+                    <li class="ui-state-default" ng-repeat="todo in todos track by $index">
+                        <div class="checkbox">
+                            <label ng-class="{'doneClass': todo.done, 'notDoneClass': !todo.done }">
+                                <input type="checkbox" ng-model="todo.done">
+                                {{todo.text}}
+                            </label>
+                            <div class="pull-right">
+                                <button class="btn btn-primary btn-xs" ng-click="editTodo(todo.id, todo.text, todo.done)">Update</button>
+                                <button class="btn btn-warning btn-xs" ng-click="deleteTodo(todo.id)"">Delete</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
 			</div>
 		</div>
-
+        <div uib-alert  ng-class="'alert-warning'" ng-if="true==false" close="closeAlert($index)">ALERTA!</div>
 		<!-- Form to create Todo -->
 		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
-				
 				<form name="fmCreateTodo" novalidate>
-					
 					<div class="form-group">
 						<input type="text" class="form-control input-lg text-center" placeholder="Enter Stuff.." 
 						ng-model="formData.text" ng-required="true">
