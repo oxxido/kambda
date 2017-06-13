@@ -129,4 +129,27 @@ angular.module('postgreDbApp.services', [])
     return {
         deleteTodo: deleteTodo
     } 
+})
+
+/**
+ * Login - Factory Service
+ */
+.factory('loginService', function($http, $q) {
+
+    /*================================================================
+    Login - $http post
+    =================================================================*/
+    var login = function(user, pass) {
+
+        return $http.post('/api/login/', {
+            user: user,
+            pass: pass
+        });
+
+    }
+
+    //Return Factory Object
+    return {
+        login: login
+    } 
 });

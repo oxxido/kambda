@@ -8,11 +8,13 @@ angular.module('postgreDbApp.controllers', [])
 /**
  * Controller - MainCtrl
  */
-.controller('MainCtrl', function($scope, $q, getTodosService, 
+.controller('MainCtrl', function($rootScope, $scope, $q, getTodosService, 
 	createTodoService, updateTodoService, deleteTodoService) {
 
+    $rootScope.bodyClass="";
 	$scope.formData = {};
 	$scope.todos={};
+    $scope.bodyClass="gradient-body";
 
 	/*
 	 * Get Todos
@@ -77,4 +79,43 @@ angular.module('postgreDbApp.controllers', [])
 	  	);
 
 	};
-});
+})
+
+
+/**
+ * Controller - MainCtrl
+ */
+.controller('LoginCtrl', loginCtrl);
+
+loginCtrl.$inject = ['$rootScope', '$scope', '$location', '$http', 'loginService'];
+
+function loginCtrl($rootScope, $scope, $location, $http, loginService) {
+
+    // state
+    $rootScope.bodyClass="gradient-body";
+    $scope.login = "Hola";
+    $scope.user = {
+        email: '',
+        pass: '',
+    };
+    $scope.errors = [];
+    $scope.isLoggingIn = false;
+
+    //methods
+    $scope.login = login;
+
+    function login() {
+        $scope.isLoggingIn = true;
+        loginService.login($scope.user.email, $scope.user.pass)
+        .then(function(response) {
+            console.log(response);
+            $scope.isLoggingIn = false;
+            if(response.data.logged) {
+                $location.path( "/todos" );
+            } else {
+                $scope.errors.push(response.data.error || 'Wrong data, please try again');
+            }
+        });
+    }
+
+}

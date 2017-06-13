@@ -15,9 +15,14 @@ angular.module('postgreDbApp', ['ngRoute', 'postgreDbApp.controllers', 'postgreD
   ================================================ */
 	$routeProvider
     
-    .when('/', {
+    .when('/todos', {
         templateUrl: 'views/main.tpl.html',
         controller: 'MainCtrl',
+        reloadOnSearch: false
+    })
+    .when('/', {
+        templateUrl: 'views/login.tpl.html',
+        controller: 'LoginCtrl',
         reloadOnSearch: false
     })
     
@@ -26,9 +31,9 @@ angular.module('postgreDbApp', ['ngRoute', 'postgreDbApp.controllers', 'postgreD
     });
       
 
-    $locationProvider.html5Mode({
+    /*$locationProvider.html5Mode({
       enabled: true,
       requireBase: false
-    });
+    });*/
 
   });
