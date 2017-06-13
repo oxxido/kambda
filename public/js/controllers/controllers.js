@@ -34,6 +34,8 @@ angular.module('postgreDbApp.controllers', [])
 		createTodoService.createTodo($scope.formData)
 			.then(function(answer) {
 				$scope.todos = answer;
+                //reset input
+                $scope.formData.text = '';
 			},
 			function(error) {
 				console.log("OOPS Error Creating Todo!!!! " + JSON.stringify(error));

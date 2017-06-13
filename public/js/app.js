@@ -3,7 +3,7 @@
 /*================================================
 Module - Main App Module
 ================================================ */
-angular.module('postgreDbApp', ['ngRoute', 'postgreDbApp.controllers', 'postgreDbApp.services'])
+angular.module('postgreDbApp', ['ngRoute', 'postgreDbApp.controllers', 'postgreDbApp.services', 'ui.bootstrap'])
 
 
 .config(function ($routeProvider, $locationProvider) {
