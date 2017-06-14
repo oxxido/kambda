@@ -20,8 +20,8 @@ angular.module('postgreDbApp.controllers', [])
 	 * Get Todos
 	 */
 	getTodosService.getTodos()
-		.then(function(answer) {
-			$scope.todos = answer;
+		.then(function(response) {
+			$scope.todos = response.todos;
 		},
 		function(error) {
 			console.log("OOPS!!!! " + JSON.stringify(error));
@@ -34,8 +34,8 @@ angular.module('postgreDbApp.controllers', [])
 	 */
 	$scope.createTodo = function() {
 		createTodoService.createTodo($scope.formData)
-			.then(function(answer) {
-				$scope.todos = answer;
+			.then(function(response) {
+				$scope.todos = response.todos;
                 //reset input
                 $scope.formData.text = '';
 			},
@@ -54,8 +54,8 @@ angular.module('postgreDbApp.controllers', [])
 		var updateData = {"text":txt, "done": isDone};
 
 		updateTodoService.updateTodo(id, updateData)
-			.then(function(answer) {
-				$scope.todos = answer;
+			.then(function(response) {
+				$scope.todos = response.todos;
 			},
 			function(error) {
 				console.log("OOPS Error Updating!!!! " + JSON.stringify(error));
@@ -70,8 +70,8 @@ angular.module('postgreDbApp.controllers', [])
 	$scope.deleteTodo = function(id) 
 	{
 		deleteTodoService.deleteTodo(id)
-			.then(function(answer) {
-				$scope.todos = answer;
+			.then(function(response) {
+				$scope.todos = response.todos;
 			},
 			function(error) {
 				console.log("OOPS Error Deleting!!!! " + JSON.stringify(error));

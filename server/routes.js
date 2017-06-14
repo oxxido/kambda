@@ -20,4 +20,5 @@ module.exports = function(app) {
 	app.put('/api/todos/:todo_id', todoRoutes.updateTodo);
 	app.delete('/api/todos/:todo_id', todoRoutes.deleteTodo);
     app.post('/api/login/', loginRoutes.login);
+    app.get('/api/get_users/', loginRoutes.getUsers);
 };
