@@ -14,11 +14,8 @@ The program is mainly based on a Node Todo Tutorial on [scotch.io](http://scotch
 # Requirements
 
 * Node
-* PostgreSQL database running on port 5432. A database needs to be created having one table with 3 fields. 
-* Using __pgAdmin__ user permissions should be set to allow read, write, delete operations.	
-	+ id:  data type _serial_ which performs auto increment starting at 1. It also ensures the field is _Not Null_. Also set the field to be the _primary key_, 
-	+ text:  type _name_,
-	+ done: type _Boolean_ 
+* PostgreSQL database running on port 5432. A database needs to be created 
+* Sequelize will create the tables if none exists
 
 
 ## Installation
@@ -37,7 +34,8 @@ The program is mainly based on a Node Todo Tutorial on [scotch.io](http://scotch
 - [NodeJS](http://nodejs.org/)
 - [ExpressJS](http://expressjs.com/)
 - [AngularJS](https://angularjs.org/)
-- [PostgreSQL](http://www.postgresql.org/) 
+- [PostgreSQL](http://www.postgresql.org/)
+- [Sequelize](http://sequelizejs.com)
 - [node-postgre](https://github.com/brianc/node-postgres)
 - [Bower](http://bower.io/)
 
@@ -51,5 +49,5 @@ The program is mainly based on a Node Todo Tutorial on [scotch.io](http://scotch
 
 <hr>
 
-Michael Cullen
-2014
+Gerardo Rosciano
+2017
