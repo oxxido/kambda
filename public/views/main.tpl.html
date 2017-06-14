@@ -2,7 +2,7 @@
 
 <section id = "secTodoApp">
 
-	<div class="container">
+	<div class="container" ng-if="userHash">
 
 		<!-- Page header -->
 		<div class="jumbotron text-center">
@@ -49,5 +49,13 @@
 		</div> <!-- @END/ #todo-form -->
 
 	</div> <!-- @END/ .container -->
+    <div class="container" ng-if="!userHash">
+
+        <!-- Page header -->
+        <div class="jumbotron text-center">
+            <h1>CRUD Application <span class="label label-info">{{todos.length}}</span></h1>
+            <p>ERROR! you are not logged. Please <a href="/#/">login</a></p>
+        </div>
+    </div>
 
 </section> <!-- @END/ section -->

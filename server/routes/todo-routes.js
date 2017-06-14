@@ -20,9 +20,37 @@ module.exports = {
     updateTodo,
     deleteTodo,
 }
+function checkHash(req, res, hash, callback) {
+    models.User.findOne({
+      where: {
+        'hash': req.query.hash
+      }
+    }).then(user => {
+      if (user == null) {
+        return res.status(401).json({error: 'You are not authorized'});
+        //return res.json({error: 'You are not authorized'});
+      } else {
+        callback(req, res);
+      }
+    }).catch(error => {
+        console.log(error);
+    });
+}
 
 function getTodos(req, res) {
+    checkHash(req, res, req.query.hash, getTodosCallback);
+}
+function createTodo(req, res) {
+    checkHash(req, res, req.query.hash, createTodoCallback);
+}
+function updateTodo(req, res) {
+    checkHash(req, res, req.query.hash, updateTodoCallback);
+}
+function deleteTodo(req, res) {
+    checkHash(req, res, req.query.hash, deleteTodoCallback);
+}
 
+function getTodosCallback(req, res) {
     const response = {};
     models.Todo.findAll()
     .then(todo => {
@@ -31,7 +59,7 @@ function getTodos(req, res) {
     });
 }
 
-function createTodo(req, res) {
+function createTodoCallback(req, res) {
 
     const response = {};
     const data = {
@@ -50,7 +78,7 @@ function createTodo(req, res) {
     });
 }
 
-function updateTodo(req, res) {
+function updateTodoCallback(req, res) {
     const response = {};
     const id = req.params.todo_id;
     const data = {
@@ -77,7 +105,7 @@ function updateTodo(req, res) {
     });
 }
 
-function deleteTodo(req, res) {
+function deleteTodoCallback(req, res) {
     const response = {};
     var id = req.params.todo_id;
     models.Todo.destroy({

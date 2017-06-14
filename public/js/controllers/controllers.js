@@ -15,11 +15,12 @@ angular.module('postgreDbApp.controllers', [])
 	$scope.formData = {};
 	$scope.todos={};
     $scope.bodyClass="gradient-body";
+    $scope.userHash = $rootScope.userHash;
 
 	/*
 	 * Get Todos
 	 */
-	getTodosService.getTodos()
+	getTodosService.getTodos($scope.userHash)
 		.then(function(response) {
 			$scope.todos = response.todos;
 		},
@@ -33,7 +34,7 @@ angular.module('postgreDbApp.controllers', [])
 	 * Create a New Todo
 	 */
 	$scope.createTodo = function() {
-		createTodoService.createTodo($scope.formData)
+		createTodoService.createTodo($scope.formData, $scope.userHash)
 			.then(function(response) {
 				$scope.todos = response.todos;
                 //reset input
@@ -53,7 +54,7 @@ angular.module('postgreDbApp.controllers', [])
 
 		var updateData = {"text":txt, "done": isDone};
 
-		updateTodoService.updateTodo(id, updateData)
+		updateTodoService.updateTodo(id, updateData, $scope.userHash)
 			.then(function(response) {
 				$scope.todos = response.todos;
 			},
@@ -69,7 +70,7 @@ angular.module('postgreDbApp.controllers', [])
 	 */
 	$scope.deleteTodo = function(id) 
 	{
-		deleteTodoService.deleteTodo(id)
+		deleteTodoService.deleteTodo(id, $scope.userHash)
 			.then(function(response) {
 				$scope.todos = response.todos;
 			},
@@ -93,12 +94,11 @@ function loginCtrl($rootScope, $scope, $location, $http, loginService) {
 
     // state
     $rootScope.bodyClass="gradient-body";
-    $scope.login = "Hola";
     $scope.user = {
         email: '',
         pass: '',
     };
-    $scope.errors = ['un error'];
+    $scope.errors = [];
     $scope.isLoggingIn = false;
 
     //methods
@@ -113,6 +113,7 @@ function loginCtrl($rootScope, $scope, $location, $http, loginService) {
             console.log(response);
             $scope.isLoggingIn = false;
             if(response.data.logged) {
+                $rootScope.userHash = response.data.user.hash;
                 $location.path( "/todos" );
             } else {
                 $scope.errors.push(response.data.error || 'Wrong data, please try again');

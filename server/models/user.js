@@ -6,14 +6,16 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             unique: true
         },
-        password: DataTypes.STRING
+        password: DataTypes.STRING,
+        hash: DataTypes.STRING
     });
 
     User.sync().then(() => {
         // Table created
         return User.findOrCreate({ where: {
             username: 'oxxido@gmail.com',
-            password: '1234'
+            password: '1234',
+            hash: '3c1337aa7b616dc84055c9376e92bf9f806ddc74'
         }});
     });
 

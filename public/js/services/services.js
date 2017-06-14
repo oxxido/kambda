@@ -20,11 +20,11 @@ angular.module('postgreDbApp.services', [])
 	/*================================================================
 	READ - $http get
 	=================================================================*/
-	var getTodos = function() {
+	var getTodos = function(hash) {
 	    
     	var deferred = $q.defer();
 
-        $http.get('/api/todos/')
+        $http.get('/api/todos/?hash='+hash)
         .success(function(data) {
         	deferred.resolve(data);
         })
@@ -50,11 +50,11 @@ angular.module('postgreDbApp.services', [])
 	/*================================================================
 	CREATE - $http post
 	=================================================================*/
-	var createTodo = function(todo) {
+	var createTodo = function(todo, hash) {
 	    
     	var deferred = $q.defer();
 
-        $http.post('/api/todos/', todo)
+        $http.post('/api/todos/?hash='+hash, todo)
         .success(function(data) {
         	deferred.resolve(data);
         })
@@ -80,17 +80,17 @@ angular.module('postgreDbApp.services', [])
 	/*================================================================
 	UPDATE - $http put
 	=================================================================*/
-	var updateTodo = function(id, updateData) {
+	var updateTodo = function(id, updateData, hash) {
 	    
     	var deferred = $q.defer();
 
-        $http.put('/api/todos/' + id, updateData)
+        $http.put('/api/todos/' + id + '/?hash='+hash , updateData)
         .success(function(data) {
         	console.log("Success");//TEST
         	deferred.resolve(data);
         })
         .error(function(reason) {
-        	console.log("Error");//TEST        	
+        	console.log("Error");//TEST
         	deferred.reject(reason);
         });
         return deferred.promise
@@ -111,11 +111,11 @@ angular.module('postgreDbApp.services', [])
 	/*================================================================
 	DELETE - $http delete
 	=================================================================*/
-	var deleteTodo = function(id) {
+	var deleteTodo = function(id, hash) {
 	    
     	var deferred = $q.defer();
 
-        $http.delete('/api/todos/' + id)        
+        $http.delete('/api/todos/' + id + '/?hash='+hash)        
         .success(function(data) {
         	deferred.resolve(data);
         })
