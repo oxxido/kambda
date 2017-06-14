@@ -29,6 +29,7 @@ The program is mainly based on a Node Todo Tutorial on [scotch.io](http://scotch
 * Open ../server/config/database.js and enter PostgreSQL database connection details
 * _node server.js_
 * Browse to _http://localhost:3090_
+* login demo info: oxxido@gmail.com:1234
 
 
 ## Technologies used
